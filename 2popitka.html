@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Концертке шақырту</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jacques+Francois+Shadow&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background-image: url('ph.jpeg');
+            background-size: cover;
+            background-position: center;
+        }
+        .container {
+            display: flex;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        .card {
+            display: flex;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            width: 90%;
+            max-width: 1200px;
+        }
+        .left {
+            flex: 1;
+            background-image: url('bota.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            margin: 20px;
+        }
+        .right {
+            flex: 2;
+            padding: 20px;
+        }
+        h1 {
+            font-family: 'Libre Baskerville';
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        p {
+            font-family: 'Jacques Francois Shadow';
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .details {
+            margin-top: 20px;
+        }
+        .details p {
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #ff4b2b;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 30px;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #ff6b50;
+        }
+
+        /* Pop-up стили */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        .popup {
+            background-color: white;
+            color: black;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 80%;
+            max-width: 400px;
+        }
+        .popup h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .popup p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .popup .close-btn {
+            background-color: green;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .popup .close-btn:hover {
+            background-color: #ff6b50;
+        }
+
+        /* Мобильные стили */
+@media (max-width: 768px) {
+    .card {
+        flex-direction: column;
+        width: 100%;
+    }
+    .left {
+        height: auto;
+        min-height: 200px; /* Убедитесь, что изображение видно */
+        background-size: cover;
+        background-position: center;
+        margin: 0; /* Уберем отступы */
+    }
+    .right {
+        padding: 10px;
+    }
+    h1 {
+        font-size: 28px;
+    }
+    p {
+        font-size: 14px;
+    }
+    .btn {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+    .popup {
+        width: 90%;
+        padding: 15px;
+    }
+    .popup h2 {
+        font-size: 20px;
+    }
+    .popup p {
+        font-size: 14px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="left"></div>
+            <div class="right">
+                <h1>Концертке шақырту</h1>
+                <p>Құрметті Ақниет!,</p>
+                <p>Қуыршақ 🧸</p>
+                <p>Сені керемет кештің қадірлі қонағы болуға шақырамын🤗Концерт керемет деңгейде өтеді деп ойлаймын, өйткені ол кешті ғажап қылатын сен барсың!</p>
+                <div class="details">
+                    <p>Дата: 19 қараша 2024</p>
+                    <p>Время: 19:00</p>
+                    <p>Место: Республика Сарайы, Алматы</p>
+                </div>
+                <button class="btn" onclick="showPopup()">Келісемін😍</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pop-up окно -->
+    <div class="popup-overlay" id="popup-overlay">
+        <div class="popup">
+            <h2>Келіскеніңе рахмет🫶</h2>
+            <p>Сені сол күні концертте тек көтеріңкі көңіл-күймен күтемін!!!</p>
+            <button class="close-btn" onclick="closePopup()">Дайындалайын концертке</button>
+        </div>
+    </div>
+
+    <audio id="myAudio" src="kazybek-kuraiysh-alystama-menen-mp3.mp3"></audio> <!-- Замените "your-music-file.mp3" на путь к вашему аудиофайлу -->
+
+    <script>
+        // Функция для показа pop-up окна и запуска музыки
+        function showPopup() {
+            document.getElementById('popup-overlay').style.display = 'flex';
+            var audio = document.getElementById("myAudio");
+            audio.play();  // Автоматически начать воспроизведение музыки
+        }
+
+        // Функция для закрытия pop-up окна
+        function closePopup() {
+            document.getElementById('popup-overlay').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
